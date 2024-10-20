@@ -7,7 +7,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import org.dreamfinity.beamingdrops.proxy.CommonProxy;
 
-
 @Mod(
     modid = BeamingDrops.MODID,
     name = BeamingDrops.NAME,
@@ -27,7 +26,6 @@ public class BeamingDrops {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);
-        Config.load(event);
     }
 
     @Mod.EventHandler

@@ -57,7 +57,8 @@ public class BeamRenderer {
         GL11.glAlphaFunc(516, 0.01F);
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_BLEND);
-        GL11.glDepthMask(true);
+        if(Config.useDepthMask)
+            GL11.glDepthMask(true);
         GL11.glColor4f(beamColor.getRed(), beamColor.getGreen(), beamColor.getBlue(), 0.01f);
         GL11.glBlendFunc(GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ONE);
 
@@ -128,7 +129,8 @@ public class BeamRenderer {
 
         GL11.glEnable(GL11.GL_BLEND);
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-        GL11.glDepthMask(false);
+        if(Config.useDepthMask)
+            GL11.glDepthMask(false);
         double outlineRadius = beamRadius * 2;
 
         tessellator.addVertexWithUV(entityXPos + outlineRadius, entityYPos + MAX_HEIGHT / 2, entityZPos, 1, 0);
@@ -177,7 +179,8 @@ public class BeamRenderer {
 
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glDepthMask(true);
+        if(Config.useDepthMask)
+            GL11.glDepthMask(true);
     }
 
     public static Color getItemColor(ItemStack itemStack) {

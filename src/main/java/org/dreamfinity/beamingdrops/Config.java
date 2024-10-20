@@ -1,6 +1,5 @@
 package org.dreamfinity.beamingdrops;
 
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
@@ -17,9 +16,11 @@ public class Config {
     public static String[]  itemBlackList;
     public static boolean isWhitelist = false;
 
-    public static void load(FMLPreInitializationEvent event) {
-        config = new Configuration(new File(event.getModConfigurationDirectory(), "BeamingDrops.cfg"), true);
-        config.load();
+    public static boolean useDepthMask = false;
+
+    public static void loadEarlyMixinConfig(File configFile) {
+        Configuration config = new Configuration(configFile);
+
         needRenderBeam = config.getBoolean("needRenderBeam", COMMON, true,  "Render beam above items or not");
         useHighResBeam = config.getBoolean("useHighResBeam", COMMON, true,  "Use high-res (256x256) beam texture or low-res(16x16)");
         useRotatingBeam = config.getBoolean("useRotatingBeam", COMMON, true,  "Rotate beam over time (like beacon's beam)");
@@ -28,10 +29,10 @@ public class Config {
         beamHeight = config.getFloat("beamHeight", COMMON, 4.0f, 0.5f, 32.0f, "Beam height (in blocks)");
         itemBlackList = config.getStringList("itemBlackList", COMMON, new String[] {}, "Items not to render beam for");
         isWhitelist = config.getBoolean("isWhitelist", COMMON, false, "If the beam blacklist should be used as a whitelist instead");
-        config.save();
-    }
+        useDepthMask = config.getBoolean("useDepthMask", COMMON, false, "I don't know what this is for, but as a side effect, the beams are rendered BEHIND the tileentity, even if the item itself is IN FRONT of them");
 
-    public static void save() {
-        config.save();
+        if(config.hasChanged()) {
+            config.save();
+        }
     }
 }
