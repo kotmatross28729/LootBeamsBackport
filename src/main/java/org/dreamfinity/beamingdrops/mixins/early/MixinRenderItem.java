@@ -1,4 +1,4 @@
-package org.dreamfinity.beamingdrops.mixins;
+package org.dreamfinity.beamingdrops.mixins.early;
 
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.item.EntityItem;

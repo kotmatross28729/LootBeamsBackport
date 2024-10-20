@@ -35,4 +35,8 @@
  */
 dependencies {
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.6.34-GTNH:dev")
+	
+	compileOnly name: 'itemphysic-1.2.7-dev'
+    compileOnly fileTree(dir: 'libs', include: '*.jar')
+    compileOnly fileTree(dir: 'libs', include: '*.zip')
 }
